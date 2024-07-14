@@ -12,7 +12,7 @@ const app = express();
 const upload = multer();
 
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'https://ragpicker.netlify.app/' }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 mongoose.connect(process.env.MONGODB_URI, {
