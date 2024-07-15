@@ -12,8 +12,12 @@ const app = express();
 const upload = multer();
 
 app.use(express.json());
-app.use(cors({ origin: 'https://ragpicker.netlify.app/' }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(cors({ 
+  origin: 'https://ragpicker.netlify.app', // Removed trailing slash
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+  credentials: true // If you need to send cookies or other credentials
+}));app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
